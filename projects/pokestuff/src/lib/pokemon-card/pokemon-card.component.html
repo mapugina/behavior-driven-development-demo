@@ -1,9 +1,43 @@
-<div class="front" (click)="requestMoreInfo()">
-  <p class="name">{{pokemon?.name}}</p>
-  <span class="number">{{pokemon?.number}}</span>
-</div>
-<div class="back" *ngIf="isFlipped">
-  <div class="types">
-    <span class="type" *ngFor="let type of types$ | async">{{type}}</span>
+<div
+  *ngIf="pokemon"
+  class="card"
+  (click)="requestMoreInfo()"
+  [ngClass]="{ 'is-flipped': isFlipped }"
+>
+  <div class="content">
+    <!-- front of the card -->
+    <div class="front">
+      <div class="info">
+        <span class="species">{{ pokemon?.name }}</span>
+        <span class="dex-number">{{ pokemon?.number }}</span>
+      </div>
+      <img
+        class="pokemon-image"
+        [src]="pokemon?.art"
+        alt="Image of {{ pokemon?.name }}"
+      />
+      <ng-content></ng-content>
+    </div>
+    <!-- back of the card -->
+    <div class="back loaded">
+      <div class="info">
+        <span class="species">{{ pokemon?.name }}</span>
+        <span class="dex-number">{{ pokemon?.number }}</span>
+      </div>
+      <div class="back-body">
+        Types:
+        <ul class="types" *ngIf="types$">
+          <li class="type" *ngFor="let type of types$ | async">{{ type }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Info plate that should be on both slides of the card -->
+<ng-template #infoPlate>
+  <div class="info">
+    <span class="name">{{ pokemon?.name }}</span>
+    <span class="dex-number">{{ pokemon?.number }}</span>
+  </div>
+</ng-template>

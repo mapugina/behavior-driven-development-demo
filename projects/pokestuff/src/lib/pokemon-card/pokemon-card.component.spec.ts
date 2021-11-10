@@ -21,7 +21,7 @@ describe('PokemonCardComponent', () => {
     });
     await TestBed.configureTestingModule({
       declarations: [PokemonCardComponent],
-      providers: [{provide: PokeAPIService, useValue: pokeAPIspy}]
+      providers: [{ provide: PokeAPIService, useValue: pokeAPIspy }],
     }).compileComponents();
   });
 
@@ -34,7 +34,7 @@ describe('PokemonCardComponent', () => {
       url: '',
       name: 'bulbasaur',
       number: 1,
-      art: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
+      art: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
     };
   });
 
@@ -42,13 +42,13 @@ describe('PokemonCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the name of the pokemon passed to it', () => {
+  it('should display the species of the pokemon passed to it', () => {
     // Set the input to some properly formatted data
     component.pokemon = pokemon;
     fixture.detectChanges(); // Call detectChanges to update the view
 
     // Query the DOM for the name and get the text
-    const name = fixture.nativeElement.querySelector('.name')?.textContent;
+    const name = fixture.nativeElement.querySelector('.species')?.textContent;
 
     // Assert that the name is correct
     expect(name).toBe('bulbasaur');
@@ -60,8 +60,8 @@ describe('PokemonCardComponent', () => {
     fixture.detectChanges(); // Call detectChanges to update the view
 
     // Query the DOM for the name and get the text
-    const dexId = fixture.debugElement.query(By.css('.number'))?.nativeElement
-      ?.textContent;
+    const dexId = fixture.debugElement.query(By.css('.dex-number'))
+      ?.nativeElement?.textContent;
 
     // Assert that the name is correct
     expect(dexId).toBe('1');
@@ -75,7 +75,7 @@ describe('PokemonCardComponent', () => {
       fixture.detectChanges(); // Call detectChanges to update the view
 
       // Simulate a click on the front
-      const frontDe = fixture.debugElement.query(By.css('.front'));
+      const frontDe = fixture.debugElement.query(By.css('.card'));
       frontDe.triggerEventHandler('click', null);
 
       fixture.detectChanges(); // Call detectChanges to update the view
@@ -83,8 +83,10 @@ describe('PokemonCardComponent', () => {
       fixture.detectChanges(); // Call detectChanges to update the view
 
       // Query for types
-      const typeEls:  HTMLElement[] = fixture.nativeElement.querySelectorAll('.type');
-      types = Array.from(typeEls).map(el => el?.textContent);
+      const typeEls: HTMLElement[] = fixture.debugElement
+        .queryAll(By.css('.type'))
+        .map((de) => de.nativeElement);
+      types = Array.from(typeEls).map((el) => el?.textContent);
     });
 
     it('should have two types after click', async () => {
