@@ -106,6 +106,37 @@
           }
         }
       }
+    },
+    "pokestuff": {
+      "projectType": "library",
+      "root": "projects/pokestuff",
+      "sourceRoot": "projects/pokestuff/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/pokestuff/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/pokestuff/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/pokestuff/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/pokestuff/src/test.ts",
+            "tsConfig": "projects/pokestuff/tsconfig.spec.json",
+            "karmaConfig": "projects/pokestuff/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "behavior-driven-development-demo"

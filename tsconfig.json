@@ -16,6 +16,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "pokestuff": [
+        "dist/pokestuff/pokestuff",
+        "dist/pokestuff"
+      ]
+    },
     "target": "es2017",
     "module": "es2020",
     "lib": [
