@@ -32,3 +32,22 @@ describe('FizzbuzzPipe in module', () => {
     expect(pipe.transform(1)).toBe(1);
   });
 });
+
+describe('FizzbuzzPipe in isolation', () => {
+  let pipe: FizzbuzzPipe;
+  let service: FizzbuzzService;
+
+  beforeEach(() => {
+    service = jasmine.createSpyObj('fizzbuzz spy', {'fizzBuzz': 'fizzbuzz'});
+    pipe = new FizzbuzzPipe(service);
+  });
+
+  it('should pass the passed in number to FizzBuzzService#fizzbuzz', () => {
+    pipe.transform(1);
+    expect(service.fizzBuzz).toHaveBeenCalledWith(1);
+  });
+
+  it('should return the output of FizzBuzzService#fizzbuzz', () => {
+    expect(pipe.transform(1)).toBe('fizzbuzz');
+  });
+});
