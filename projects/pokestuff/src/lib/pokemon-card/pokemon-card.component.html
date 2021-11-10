@@ -1,7 +1,9 @@
-<div class="front">
+<div class="front" (click)="requestMoreInfo()">
   <p class="name">{{pokemon?.name}}</p>
   <span class="number">{{pokemon?.number}}</span>
 </div>
-<div class="back">
-
+<div class="back" *ngIf="isFlipped">
+  <div class="types">
+    <span class="type" *ngFor="let type of types$ | async">{{type}}</span>
+  </div>
 </div>
