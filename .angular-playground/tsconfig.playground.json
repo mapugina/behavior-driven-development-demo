@@ -10,6 +10,7 @@
   ],
   "include": [
     "../src/**/*.d.ts",
-    "../src/**/*.sandbox.ts"
+    "../src/**/*.sandbox.ts",
+    "../projects/pokestuff/src/**/*.sandbox.ts"
   ]
 }
