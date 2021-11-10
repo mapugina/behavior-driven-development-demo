@@ -12,6 +12,7 @@
         <span class="dex-number">{{ pokemon?.number }}</span>
       </div>
       <img
+        loading="lazy"
         class="pokemon-image"
         [src]="pokemon?.art"
         alt="Image of {{ pokemon?.name }}"
