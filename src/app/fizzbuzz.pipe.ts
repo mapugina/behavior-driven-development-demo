@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { fizzbuzz } from './fizzbuzz';
+import { FizzbuzzService } from './fizzbuzz.service';
 
 @Pipe({
   name: 'fizzbuzz'
 })
 export class FizzbuzzPipe implements PipeTransform {
+  constructor(private fizzbuzz: FizzbuzzService) {}
 
   transform(num: number) {
-    return fizzbuzz(num);
+    return this.fizzbuzz.fizzBuzz(num);
   }
-
 }
