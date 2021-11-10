@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PokemonCardComponent
+  ],
   imports: [],
-  exports: [],
+  exports: [
+    PokemonCardComponent
+  ],
 })
 export class PokestuffModule {}
